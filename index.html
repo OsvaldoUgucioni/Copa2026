@@ -9,41 +9,25 @@
 <title>Copa 2026 - Figurinhas</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  :root {
-    --verde: #1a5c38; --verde2: #2e7d52; --verde3: #e8f5ee;
-    --amarelo: #f5c518; --bg: #f5f5f5; --card: #ffffff;
-    --text: #1a1a1a; --text2: #666; --border: #e0e0e0;
-  }
+  :root { --verde: #1a5c38; --verde2: #2e7d52; --verde3: #e8f5ee; --amarelo: #f5c518; --bg: #f5f5f5; --card: #ffffff; --text: #1a1a1a; --text2: #666; --border: #e0e0e0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-
-  /* HEADER */
   .header { background: var(--verde); padding: 14px 16px 0; position: sticky; top: 0; z-index: 100; }
   .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
   .header h1 { color: var(--amarelo); font-size: 17px; font-weight: 700; }
   .key-badge { background: rgba(255,255,255,0.15); color: #fff; font-size: 11px; padding: 3px 8px; border-radius: 20px; }
-
-  /* PROGRESS */
   .progress-wrap { background: rgba(0,0,0,0.2); border-radius: 6px; margin-bottom: 10px; overflow: hidden; position: relative; height: 28px; }
   .progress-bar { height: 100%; background: var(--amarelo); border-radius: 6px; transition: width 0.4s ease; }
   .progress-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--verde); }
-
-  /* TABS */
   .tabs { display: flex; gap: 4px; }
   .tab { flex: 1; padding: 9px 4px; border: none; background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 500; border-radius: 8px 8px 0 0; cursor: pointer; }
   .tab.active { background: var(--bg); color: var(--verde); font-weight: 700; }
-
-  /* STATS */
   .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; padding: 12px 12px 0; }
   .stat { background: var(--card); border-radius: 10px; padding: 10px 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
   .stat-val { font-size: 22px; font-weight: 700; color: var(--verde); line-height: 1; }
   .stat-label { font-size: 10px; color: var(--text2); margin-top: 3px; }
-
-  /* SEARCH */
   .search-wrap { padding: 10px 12px; }
   .search { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 15px; background: var(--card); color: var(--text); outline: none; }
   .search:focus { border-color: var(--verde2); }
-
-  /* TEAMS */
   .teams { padding: 0 12px 80px; }
   .team { background: var(--card); border-radius: 12px; margin-bottom: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
   .team-hdr { display: flex; align-items: center; gap: 10px; padding: 12px 14px; cursor: pointer; user-select: none; }
@@ -57,16 +41,10 @@
   .team-body { display: none; padding: 4px 14px 14px; border-top: 1px solid var(--border); }
   .team-body.open { display: block; }
   .chevron.open { transform: rotate(180deg); }
-
-  /* STICKERS */
   .stickers { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
   .stk { padding: 7px 12px; border-radius: 8px; border: 1.5px solid var(--border); background: #fafafa; color: var(--text); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
   .stk:active { transform: scale(0.93); }
-  .stk.got { background: var(--verde3); border-color: var(--verde2); color: var(--verde2); text-decoration: line-through; opacity: 0.6; }
   .stk.rec-item { background: #fff3cd; border-color: #ffc107; color: #856404; }
-  .stk.rec-item:active { transform: scale(0.93); }
-
-  /* REPETIDAS */
   .rep-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); }
   .rep-row:last-child { border-bottom: none; }
   .rep-code { font-size: 14px; font-weight: 600; }
@@ -75,13 +53,9 @@
   .qty-btn:active { background: var(--verde3); border-color: var(--verde2); }
   .qty-val { font-size: 16px; font-weight: 700; min-width: 24px; text-align: center; color: var(--verde); }
   .qty-zero .qty-val { color: #ccc; }
-
-  /* COPY */
   .copy-wrap { position: fixed; bottom: 0; left: 0; right: 0; padding: 12px 16px; background: var(--bg); border-top: 1px solid var(--border); }
   .copy-btn { width: 100%; padding: 14px; background: var(--verde); color: #fff; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .copy-btn:active { background: var(--verde2); transform: scale(0.98); }
-
-  /* MODAL */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: flex-end; }
   .modal-overlay.show { display: flex; }
   .modal { background: var(--card); border-radius: 20px 20px 0 0; padding: 20px 16px; width: 100%; max-height: 70vh; display: flex; flex-direction: column; gap: 12px; }
@@ -96,16 +70,9 @@
 </style>
 </head>
 <body>
-
 <div class="header">
-  <div class="header-top">
-    <h1>⚽ Copa 2026</h1>
-    <span class="key-badge">KJYHL3</span>
-  </div>
-  <div class="progress-wrap">
-    <div class="progress-bar" id="progress-bar"></div>
-    <div class="progress-text" id="progress-text"></div>
-  </div>
+  <div class="header-top"><h1>⚽ Copa 2026</h1><span class="key-badge">KJYHL3</span></div>
+  <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div><div class="progress-text" id="progress-text"></div></div>
   <div class="tabs">
     <button class="tab active" onclick="showTab('faltantes')">❌ Faltantes</button>
     <button class="tab" onclick="showTab('recebidas')">✅ Recebidas</button>
@@ -113,7 +80,6 @@
   </div>
 </div>
 
-<!-- FALTANTES -->
 <div id="pane-faltantes">
   <div class="stats">
     <div class="stat"><div class="stat-val" id="sf-total">—</div><div class="stat-label">Faltam</div></div>
@@ -124,7 +90,6 @@
   <div class="teams" id="teams-f"></div>
 </div>
 
-<!-- RECEBIDAS -->
 <div id="pane-recebidas" class="hidden">
   <div class="stats">
     <div class="stat"><div class="stat-val" id="sr-count">0</div><div class="stat-label">Recebidas</div></div>
@@ -135,7 +100,6 @@
   <div class="teams" id="teams-rec"></div>
 </div>
 
-<!-- REPETIDAS -->
 <div id="pane-repetidas" class="hidden">
   <div class="stats">
     <div class="stat"><div class="stat-val" id="srep-uniq">—</div><div class="stat-label">Figurinhas</div></div>
@@ -146,9 +110,7 @@
   <div class="teams" id="teams-rep"></div>
 </div>
 
-<div class="copy-wrap">
-  <button class="copy-btn" onclick="openModal()">📋 Copiar lista para WhatsApp</button>
-</div>
+<div class="copy-wrap"><button class="copy-btn" onclick="openModal()">📋 Copiar lista para WhatsApp</button></div>
 
 <div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal">
@@ -162,62 +124,57 @@
 </div>
 
 <script>
-const TOTAL_ALBUM = 980;
-const ALREADY_HAVE = 754; // coladas antes deste app
-
-const FALTANTES = [
-  {flag:"🇲🇽",code:"MEX",name:"México",pg:"8-9",s:["MEX8","MEX11","MEX13","MEX14"]},
+const TOTAL_ALBUM=980, ALREADY_HAVE=823;
+const FALTANTES=[
+  {flag:"🇲🇽",code:"MEX",name:"México",pg:"8-9",s:["MEX8","MEX14"]},
   {flag:"🇿🇦",code:"RSA",name:"África do Sul",pg:"10-11",s:["RSA1"]},
-  {flag:"🇰🇷",code:"KOR",name:"Coreia do Sul",pg:"12-13",s:["KOR2","KOR9","KOR11","KOR13","KOR16"]},
+  {flag:"🇰🇷",code:"KOR",name:"Coreia do Sul",pg:"12-13",s:["KOR9","KOR11","KOR13","KOR16"]},
   {flag:"🇨🇿",code:"CZE",name:"Rep. Tcheca",pg:"14-15",s:["CZE3","CZE7","CZE9","CZE13","CZE19","CZE20"]},
-  {flag:"🇨🇦",code:"CAN",name:"Canadá",pg:"16-17",s:["CAN6","CAN7","CAN13","CAN14","CAN20"]},
-  {flag:"🇧🇦",code:"BIH",name:"Bósnia",pg:"18-19",s:["BIH1","BIH2","BIH3","BIH7","BIH13","BIH17","BIH19","BIH20"]},
-  {flag:"🇶🇦",code:"QAT",name:"Catar",pg:"20-21",s:["QAT1","QAT5","QAT18","QAT20"]},
-  {flag:"🇨🇭",code:"SUI",name:"Suíça",pg:"22-23",s:["SUI11"]},
-  {flag:"🇧🇷",code:"BRA",name:"Brasil",pg:"24-25",s:["BRA3","BRA6","BRA7","BRA9","BRA14","BRA18","BRA20"]},
-  {flag:"🇲🇦",code:"MAR",name:"Marrocos",pg:"26-27",s:["MAR2","MAR3","MAR5","MAR7","MAR9","MAR11","MAR18"]},
-  {flag:"🇭🇹",code:"HAI",name:"Haiti",pg:"28-29",s:["HAI1","HAI2","HAI5","HAI7","HAI16","HAI18","HAI20"]},
-  {flag:"🏴󠁧󠁢󠁳󠁣󠁴󠁿",code:"SCO",name:"Escócia",pg:"30-31",s:["SCO13","SCO14","SCO15","SCO17","SCO18"]},
+  {flag:"🇨🇦",code:"CAN",name:"Canadá",pg:"16-17",s:["CAN7","CAN20"]},
+  {flag:"🇧🇦",code:"BIH",name:"Bósnia",pg:"18-19",s:["BIH1","BIH2","BIH7","BIH13","BIH17","BIH19"]},
+  {flag:"🇶🇦",code:"QAT",name:"Catar",pg:"20-21",s:["QAT5","QAT18","QAT20"]},
+  {flag:"🇧🇷",code:"BRA",name:"Brasil",pg:"24-25",s:["BRA3","BRA6","BRA7","BRA9","BRA14","BRA18"]},
+  {flag:"🇲🇦",code:"MAR",name:"Marrocos",pg:"26-27",s:["MAR2","MAR3","MAR7","MAR11"]},
+  {flag:"🇭🇹",code:"HAI",name:"Haiti",pg:"28-29",s:["HAI2","HAI5","HAI7","HAI18"]},
+  {flag:"🏴󠁧󠁢󠁳󠁣󠁴󠁿",code:"SCO",name:"Escócia",pg:"30-31",s:["SCO14","SCO17"]},
   {flag:"🇺🇸",code:"USA",name:"Estados Unidos",pg:"32-33",s:["USA1","USA7","USA11"]},
-  {flag:"🇵🇾",code:"PAR",name:"Paraguai",pg:"34-35",s:["PAR4","PAR13","PAR14","PAR19"]},
-  {flag:"🇦🇺",code:"AUS",name:"Austrália",pg:"36-37",s:["AUS1","AUS3","AUS10","AUS18"]},
-  {flag:"🇹🇷",code:"TUR",name:"Turquia",pg:"38-39",s:["TUR1","TUR2","TUR3","TUR4","TUR8","TUR20"]},
-  {flag:"🇩🇪",code:"GER",name:"Alemanha",pg:"40-41",s:["GER13","GER18","GER20"]},
-  {flag:"🇨🇼",code:"CUW",name:"Curaçao",pg:"42-43",s:["CUW7","CUW9","CUW18"]},
-  {flag:"🇨🇮",code:"CIV",name:"Costa do Marfim",pg:"44-45",s:["CIV2","CIV6","CIV7","CIV9","CIV11","CIV13","CIV16","CIV18"]},
+  {flag:"🇵🇾",code:"PAR",name:"Paraguai",pg:"34-35",s:["PAR13"]},
+  {flag:"🇦🇺",code:"AUS",name:"Austrália",pg:"36-37",s:["AUS10"]},
+  {flag:"🇹🇷",code:"TUR",name:"Turquia",pg:"38-39",s:["TUR1","TUR3","TUR4"]},
+  {flag:"🇩🇪",code:"GER",name:"Alemanha",pg:"40-41",s:["GER13"]},
+  {flag:"🇨🇼",code:"CUW",name:"Curaçao",pg:"42-43",s:["CUW9"]},
+  {flag:"🇨🇮",code:"CIV",name:"Costa do Marfim",pg:"44-45",s:["CIV2","CIV6","CIV11","CIV13","CIV16"]},
   {flag:"🇪🇨",code:"ECU",name:"Equador",pg:"46-47",s:["ECU3","ECU11"]},
-  {flag:"🇳🇱",code:"NED",name:"Holanda",pg:"48-49",s:["NED3","NED5","NED11","NED13","NED18","NED19"]},
-  {flag:"🇯🇵",code:"JPN",name:"Japão",pg:"50-51",s:["JPN7","JPN14"]},
+  {flag:"🇳🇱",code:"NED",name:"Holanda",pg:"48-49",s:["NED3","NED5","NED11","NED13"]},
   {flag:"🇸🇪",code:"SWE",name:"Suécia",pg:"52-53",s:["SWE11","SWE16","SWE17","SWE18","SWE19","SWE20"]},
-  {flag:"🇹🇳",code:"TUN",name:"Tunísia",pg:"54-55",s:["TUN1","TUN4","TUN5","TUN6","TUN7","TUN17"]},
-  {flag:"🇧🇪",code:"BEL",name:"Bélgica",pg:"58-59",s:["BEL3","BEL5","BEL7","BEL9","BEL18","BEL19"]},
-  {flag:"🇪🇬",code:"EGY",name:"Egito",pg:"60-61",s:["EGY10","EGY11"]},
-  {flag:"🇮🇷",code:"IRN",name:"Irã",pg:"62-63",s:["IRN3","IRN5","IRN14"]},
+  {flag:"🇹🇳",code:"TUN",name:"Tunísia",pg:"54-55",s:["TUN1","TUN6","TUN7","TUN17"]},
+  {flag:"🇧🇪",code:"BEL",name:"Bélgica",pg:"58-59",s:["BEL3","BEL5","BEL7","BEL9"]},
+  {flag:"🇪🇬",code:"EGY",name:"Egito",pg:"60-61",s:["EGY10"]},
+  {flag:"🇮🇷",code:"IRN",name:"Irã",pg:"62-63",s:["IRN3","IRN5"]},
   {flag:"🇳🇿",code:"NZL",name:"Nova Zelândia",pg:"64-65",s:["NZL7","NZL20"]},
-  {flag:"🇪🇸",code:"ESP",name:"Espanha",pg:"66-67",s:["ESP3","ESP4","ESP7","ESP9","ESP11","ESP12"]},
-  {flag:"🇨🇻",code:"CPV",name:"Cabo Verde",pg:"68-69",s:["CPV1","CPV5"]},
-  {flag:"🇸🇦",code:"KSA",name:"Arábia Saudita",pg:"70-71",s:["KSA11","KSA12","KSA14","KSA17","KSA20"]},
-  {flag:"🇺🇾",code:"URU",name:"Uruguai",pg:"72-73",s:["URU1","URU3","URU7","URU9","URU10","URU13"]},
-  {flag:"🇫🇷",code:"FRA",name:"França",pg:"74-75",s:["FRA7","FRA13","FRA14","FRA15","FRA20"]},
-  {flag:"🇮🇶",code:"IRQ",name:"Iraque",pg:"78-79",s:["IRQ2","IRQ5","IRQ6","IRQ12","IRQ13","IRQ14","IRQ17"]},
-  {flag:"🇳🇴",code:"NOR",name:"Noruega",pg:"80-81",s:["NOR1","NOR3","NOR7","NOR19"]},
-  {flag:"🇦🇷",code:"ARG",name:"Argentina",pg:"82-83",s:["ARG6","ARG7","ARG11","ARG15","ARG20"]},
+  {flag:"🇪🇸",code:"ESP",name:"Espanha",pg:"66-67",s:["ESP3","ESP4","ESP9","ESP11","ESP12"]},
+  {flag:"🇨🇻",code:"CPV",name:"Cabo Verde",pg:"68-69",s:["CPV5"]},
+  {flag:"🇸🇦",code:"KSA",name:"Arábia Saudita",pg:"70-71",s:["KSA11","KSA17","KSA20"]},
+  {flag:"🇺🇾",code:"URU",name:"Uruguai",pg:"72-73",s:["URU1","URU3","URU10","URU13"]},
+  {flag:"🇫🇷",code:"FRA",name:"França",pg:"74-75",s:["FRA13","FRA15","FRA20"]},
+  {flag:"🇮🇶",code:"IRQ",name:"Iraque",pg:"78-79",s:["IRQ6","IRQ12","IRQ13","IRQ14","IRQ17"]},
+  {flag:"🇳🇴",code:"NOR",name:"Noruega",pg:"80-81",s:["NOR1","NOR7","NOR19"]},
+  {flag:"🇦🇷",code:"ARG",name:"Argentina",pg:"82-83",s:["ARG6","ARG11","ARG15","ARG20"]},
   {flag:"🇩🇿",code:"ALG",name:"Argélia",pg:"84-85",s:["ALG3","ALG4","ALG5","ALG12","ALG16","ALG20"]},
-  {flag:"🇦🇹",code:"AUT",name:"Áustria",pg:"86-87",s:["AUT1","AUT3","AUT4","AUT10","AUT11","AUT15","AUT19"]},
-  {flag:"🇯🇴",code:"JOR",name:"Jordânia",pg:"88-89",s:["JOR1","JOR2","JOR3","JOR5","JOR7","JOR9","JOR13"]},
+  {flag:"🇦🇹",code:"AUT",name:"Áustria",pg:"86-87",s:["AUT1","AUT4","AUT10","AUT15","AUT19"]},
+  {flag:"🇯🇴",code:"JOR",name:"Jordânia",pg:"88-89",s:["JOR1","JOR2","JOR3","JOR5","JOR9","JOR13"]},
   {flag:"🇵🇹",code:"POR",name:"Portugal",pg:"90-91",s:["POR1"]},
-  {flag:"🇨🇩",code:"COD",name:"Congo",pg:"92-93",s:["COD5","COD6","COD8","COD13","COD14","COD18"]},
+  {flag:"🇨🇩",code:"COD",name:"Congo",pg:"92-93",s:["COD6","COD8","COD13","COD14"]},
   {flag:"🇺🇿",code:"UZB",name:"Uzbequistão",pg:"94-95",s:["UZB2","UZB6"]},
-  {flag:"🇨🇴",code:"COL",name:"Colômbia",pg:"96-97",s:["COL3","COL6","COL7","COL15","COL20"]},
-  {flag:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",code:"ENG",name:"Inglaterra",pg:"98-99",s:["ENG1","ENG4","ENG5","ENG7","ENG11","ENG12","ENG16","ENG17","ENG20"]},
-  {flag:"🇬🇭",code:"GHA",name:"Gana",pg:"102-103",s:["GHA13","GHA14","GHA20"]},
-  {flag:"🇵🇦",code:"PAN",name:"Panamá",pg:"104-105",s:["PAN5","PAN9","PAN12","PAN19","PAN20"]},
+  {flag:"🇨🇴",code:"COL",name:"Colômbia",pg:"96-97",s:["COL3","COL15","COL20"]},
+  {flag:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",code:"ENG",name:"Inglaterra",pg:"98-99",s:["ENG4","ENG7","ENG11","ENG12","ENG16","ENG17","ENG20"]},
+  {flag:"🇬🇭",code:"GHA",name:"Gana",pg:"102-103",s:["GHA13","GHA20"]},
+  {flag:"🇵🇦",code:"PAN",name:"Panamá",pg:"104-105",s:["PAN5","PAN12","PAN19","PAN20"]},
   {flag:"🏅",code:"FWC2",name:"História da Copa",pg:"106-109",s:["FWC11","FWC15","FWC18"]},
   {flag:"⭐",code:"EXTRA",name:"Extra Stickers",pg:"110",s:["REGU","PRAT","OURO"]},
   {flag:"🥤",code:"CC",name:"Coca-Cola",pg:"111",s:["CC2","CC7","CC8"]}
 ];
-
-const REPETIDAS = [
+const REPETIDAS=[
   {flag:"🏅",code:"00",name:"Somos 26",s:[{id:"00",qty:1}]},
   {flag:"🇿🇦",code:"RSA",name:"África do Sul",s:[{id:"RSA2",qty:1},{id:"RSA3",qty:1},{id:"RSA19",qty:1}]},
   {flag:"🇰🇷",code:"KOR",name:"Coreia do Sul",s:[{id:"KOR7",qty:1}]},
@@ -241,14 +198,10 @@ const REPETIDAS = [
   {flag:"🇭🇷",code:"CRO",name:"Croácia",s:[{id:"CRO4",qty:1},{id:"CRO12",qty:1},{id:"CRO17",qty:1}]},
   {flag:"🇵🇦",code:"PAN",name:"Panamá",s:[{id:"PAN18",qty:1}]}
 ];
-
-// Mapa code -> info para aba recebidas
-const ALL_STICKERS = {};
-FALTANTES.forEach(t => t.s.forEach(s => { ALL_STICKERS[s] = {flag:t.flag, code:t.code, name:t.name, pg:t.pg}; }));
-
-const SK_F="copa26_f", SK_R="copa26_r";
-let received=new Set(), repQty={}, curTab="faltantes";
-let filterFStr="", filterRecStr="", filterRepStr="";
+const ALL_STICKERS={};
+FALTANTES.forEach(t=>t.s.forEach(s=>{ALL_STICKERS[s]={flag:t.flag,code:t.code,name:t.name,pg:t.pg}}));
+const SK_F="copa26_f",SK_R="copa26_r";
+let received=new Set(),repQty={},curTab="faltantes",filterFStr="",filterRecStr="",filterRepStr="";
 
 function load(){
   try{const d=localStorage.getItem(SK_F);if(d)received=new Set(JSON.parse(d));}catch(e){}
@@ -260,45 +213,23 @@ function save(){
   try{localStorage.setItem(SK_F,JSON.stringify([...received]));}catch(e){}
   try{localStorage.setItem(SK_R,JSON.stringify(repQty));}catch(e){}
 }
-
 function showTab(tab){
   curTab=tab;
-  ["faltantes","recebidas","repetidas"].forEach(t=>{
-    document.getElementById("pane-"+t).classList.toggle("hidden",t!==tab);
-  });
-  document.querySelectorAll(".tab").forEach((t,i)=>{
-    t.classList.toggle("active",["faltantes","recebidas","repetidas"][i]===tab);
-  });
+  ["faltantes","recebidas","repetidas"].forEach(t=>document.getElementById("pane-"+t).classList.toggle("hidden",t!==tab));
+  document.querySelectorAll(".tab").forEach((t,i)=>t.classList.toggle("active",["faltantes","recebidas","repetidas"][i]===tab));
 }
-
 function filterF(v){filterFStr=v.toLowerCase();renderFaltantes();}
 function filterRec(v){filterRecStr=v.toLowerCase();renderRecebidas();}
 function filterRep(v){filterRepStr=v.toLowerCase();renderRepetidas();}
-
-function toggleStk(code){
-  if(received.has(code))received.delete(code);else received.add(code);
-  save();renderAll();
-}
-
-function changeQty(id,d){
-  repQty[id]=Math.max(0,(repQty[id]||0)+d);
-  save();renderRepetidas();updateRepStats();
-}
-
-function renderAll(){
-  renderFaltantes();renderRecebidas();renderRepetidas();
-  updateFStats();updateRecStats();updateRepStats();updateProgress();
-}
-
+function toggleStk(code){if(received.has(code))received.delete(code);else received.add(code);save();renderAll();}
+function changeQty(id,d){repQty[id]=Math.max(0,(repQty[id]||0)+d);save();renderRepetidas();updateRepStats();}
+function renderAll(){renderFaltantes();renderRecebidas();renderRepetidas();updateFStats();updateRecStats();updateRepStats();updateProgress();}
 function updateProgress(){
-  const total = ALREADY_HAVE + received.size;
-  const pct = ((total/TOTAL_ALBUM)*100).toFixed(1);
-  const bar = document.getElementById("progress-bar");
-  const txt = document.getElementById("progress-text");
-  bar.style.width = pct+"%";
-  txt.textContent = total+" / "+TOTAL_ALBUM+" — "+pct+"% completo";
+  const total=ALREADY_HAVE+received.size;
+  const pct=((total/TOTAL_ALBUM)*100).toFixed(1);
+  document.getElementById("progress-bar").style.width=pct+"%";
+  document.getElementById("progress-text").textContent=total+" / "+TOTAL_ALBUM+" — "+pct+"% completo";
 }
-
 function renderFaltantes(){
   const c=document.getElementById("teams-f");c.innerHTML="";
   FALTANTES.forEach(team=>{
@@ -310,29 +241,18 @@ function renderFaltantes(){
     c.appendChild(el);
   });
 }
-
 function renderRecebidas(){
   const c=document.getElementById("teams-rec");c.innerHTML="";
-  if(received.size===0){
-    c.innerHTML='<div class="empty-msg">Nenhuma figurinha marcada ainda.<br>Toque nas faltantes para marcar as recebidas.</div>';
-    return;
-  }
-  // agrupar por time
+  if(!received.size){c.innerHTML='<div class="empty-msg">Nenhuma figurinha marcada ainda.<br>Toque nas faltantes para registrar as recebidas.</div>';return;}
   const byTeam={};
-  received.forEach(s=>{
-    const info=ALL_STICKERS[s];
-    if(!info)return;
-    if(!byTeam[info.code])byTeam[info.code]={flag:info.flag,name:info.name,pg:info.pg,stickers:[]};
-    byTeam[info.code].stickers.push(s);
-  });
+  received.forEach(s=>{const info=ALL_STICKERS[s];if(!info)return;if(!byTeam[info.code])byTeam[info.code]={flag:info.flag,name:info.name,pg:info.pg,stickers:[]};byTeam[info.code].stickers.push(s);});
   Object.entries(byTeam).forEach(([code,team])=>{
     if(filterRecStr&&!team.name.toLowerCase().includes(filterRecStr)&&!code.toLowerCase().includes(filterRecStr))return;
     const el=document.createElement("div");el.className="team";
-    el.innerHTML=`<div class="team-hdr" onclick="toggleBody(this)"><span class="team-flag">${team.flag}</span><div class="team-info"><div class="team-name">${team.name}</div><div class="team-pg">pg. ${team.pg}</div></div><span class="team-cnt rec">${team.stickers.length}</span><span class="chevron">▼</span></div><div class="team-body"><div class="stickers">${team.stickers.map(s=>`<button class="stk rec-item" onclick="toggleStk('${s}')" title="Toque para devolver às faltantes">${s}</button>`).join("")}</div><div style="font-size:11px;color:var(--text2);margin-top:8px;">Toque para devolver às faltantes</div></div>`;
+    el.innerHTML=`<div class="team-hdr" onclick="toggleBody(this)"><span class="team-flag">${team.flag}</span><div class="team-info"><div class="team-name">${team.name}</div><div class="team-pg">pg. ${team.pg}</div></div><span class="team-cnt rec">${team.stickers.length}</span><span class="chevron">▼</span></div><div class="team-body"><div class="stickers">${team.stickers.map(s=>`<button class="stk rec-item" onclick="toggleStk('${s}')">${s}</button>`).join("")}</div><div style="font-size:11px;color:var(--text2);margin-top:8px;">Toque para devolver às faltantes</div></div>`;
     c.appendChild(el);
   });
 }
-
 function renderRepetidas(){
   const c=document.getElementById("teams-rep");c.innerHTML="";
   REPETIDAS.forEach(team=>{
@@ -345,9 +265,7 @@ function renderRepetidas(){
     c.appendChild(el);
   });
 }
-
 function toggleBody(hdr){const body=hdr.nextElementSibling;const ch=hdr.querySelector(".chevron");body.classList.toggle("open");ch.classList.toggle("open");}
-
 function updateFStats(){
   const total=FALTANTES.reduce((a,t)=>a+t.s.length,0);
   const rec=received.size;
@@ -355,7 +273,6 @@ function updateFStats(){
   document.getElementById("sf-rec").textContent=rec;
   document.getElementById("sf-rest").textContent=total-rec;
 }
-
 function updateRecStats(){
   const total=ALREADY_HAVE+received.size;
   const pct=((total/TOTAL_ALBUM)*100).toFixed(1);
@@ -364,7 +281,6 @@ function updateRecStats(){
   document.getElementById("sr-pct").textContent=pct+"%";
   document.getElementById("sr-times").textContent=times;
 }
-
 function updateRepStats(){
   const uniq=REPETIDAS.reduce((a,t)=>a+t.s.filter(s=>repQty[s.id]>0).length,0);
   const times=REPETIDAS.filter(t=>t.s.some(s=>repQty[s.id]>0)).length;
@@ -373,31 +289,16 @@ function updateRepStats(){
   document.getElementById("srep-times").textContent=times;
   document.getElementById("srep-total").textContent=total;
 }
-
 function buildListF(){
   const lines=["❌ *FIGURINHAS FALTANDO*","🏆 *Copa 2026*","🔑 *KJYHL3*","─────────────"];
-  FALTANTES.forEach(t=>{
-    const rem=t.s.filter(s=>!received.has(s));
-    if(!rem.length)return;
-    lines.push(`${t.flag} *${t.code}* · pg. ${t.pg}`);
-    for(let i=0;i<rem.length;i+=5)lines.push(rem.slice(i,i+5).join(", "));
-  });
-  lines.push("─────────────");
-  return lines.join("\n");
+  FALTANTES.forEach(t=>{const rem=t.s.filter(s=>!received.has(s));if(!rem.length)return;lines.push(`${t.flag} *${t.code}* · pg. ${t.pg}`);for(let i=0;i<rem.length;i+=5)lines.push(rem.slice(i,i+5).join(", "));});
+  lines.push("─────────────");return lines.join("\n");
 }
-
 function buildListR(){
   const lines=["📦 *FIGURINHAS REPETIDAS*","🏆 *Copa 2026*","─────────────"];
-  REPETIDAS.forEach(t=>{
-    const ac=t.s.filter(s=>repQty[s.id]>0);
-    if(!ac.length)return;
-    lines.push(`${t.flag} *${t.code}* · ${t.name}`);
-    ac.forEach(s=>lines.push(`${s.id} (x${repQty[s.id]})`));
-  });
-  lines.push("─────────────");
-  return lines.join("\n");
+  REPETIDAS.forEach(t=>{const ac=t.s.filter(s=>repQty[s.id]>0);if(!ac.length)return;lines.push(`${t.flag} *${t.code}* · ${t.name}`);ac.forEach(s=>lines.push(`${s.id} (x${repQty[s.id]})`))});
+  lines.push("─────────────");return lines.join("\n");
 }
-
 function openModal(){
   const txt=curTab==="repetidas"?buildListR():buildListF();
   document.getElementById("modal-text").value=txt;
@@ -406,7 +307,6 @@ function openModal(){
 }
 function closeModal(){document.getElementById("modal").classList.remove("show");}
 function selectAll(){const ta=document.getElementById("modal-text");ta.focus();ta.select();}
-
 load();
 </script>
 </body>
